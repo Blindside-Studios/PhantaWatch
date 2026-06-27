@@ -19,6 +19,7 @@ struct ContentView: View {
                 return $0.wait_time < $1.wait_time
             }
     }
+    @Environment(\.openURL) var openURL
     
     var body: some View {
         List{
@@ -47,6 +48,14 @@ struct ContentView: View {
                     }
                 }
             }
+            
+            Section(footer:
+                Text("Powered by Queue-Times.com")
+                    .foregroundStyle(.secondary)
+                    .onTapGesture {
+                        openURL(URL(string: "https://queue-times.com")!)
+                    }
+            ) { }
         }
         .navigationTitle("Phantasialand")
     }
